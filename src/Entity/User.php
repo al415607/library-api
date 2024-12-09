@@ -2,8 +2,11 @@
 
 namespace App\Entity;
 
+use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
+#[ORM\Entity(repositoryClass: UserRepository::class)]
 class User
 {
     #[ORM\Id]
@@ -12,15 +15,21 @@ class User
     private $id;
 
     #[ORM\Column(type: "string", length: 255)]
+    #[Assert\NotBlank(message: "El email no puede estar vacío.")]
     private $name;
 
     #[ORM\Column(type: "string", length: 255, unique: true)]
+    #[Assert\NotBlank(message: "El email no puede estar vacío.")]
+    #[Assert\Email(message: "El formato del email no es válido.")]
+
     private $email;
 
     #[ORM\Column(type: "integer")]
+    #[Assert\NotBlank(message: "El email no puede estar vacío.")]
     private $age;
 
     #[ORM\Column(type: "string", length: 255)]
+    #[Assert\NotBlank(message: "La contraseña no puede estar vacía.")]
     private $password;
 
 

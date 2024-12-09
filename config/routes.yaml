@@ -3,3 +3,36 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+update_book:
+    path: /books/{id}
+    controller: App\Controller\BookController::updateBook
+    methods: [PUT]
+    requirements:
+        id: \d+
+
+delete_book:
+    path: /books/{id}
+    controller: App\Controller\BookController::deleteBook
+    methods: [DELETE]
+    requirements:
+        id: \d+
+
+update_user:
+    path: /users/{id}
+    controller: App\Controller\UserController::updateUser
+    methods: [PUT]
+    requirements:
+        id: \d+
+
+delete_user:
+    path: /users/{id}
+    controller: App\Controller\UserController::deleteUser
+    methods: [DELETE]
+    requirements:
+        id: \d+
+
+users_create:
+    path: /users
+    controller: App\Controller\UserController::createUser
+    methods: POST

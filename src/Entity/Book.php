@@ -3,7 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\BookRepository;
 
+
+
+#[ORM\Entity(repositoryClass: BookRepository::class)]
 class Book
 {
     #[ORM\Id]
@@ -12,27 +17,25 @@ class Book
     private $id;
 
     #[ORM\Column(type: "string", length: 255)]
+    #[Assert\NotBlank(message: "El título no puede estar vacío.")]
     private $title;
 
     #[ORM\Column(type: "string", length: 255)]
+    #[Assert\NotBlank(message: "El autor no puede estar vacío.")]
     private $author;
 
     #[ORM\Column(type:"string", length:255)]
+    #[Assert\NotBlank(message: "El género no puede estar vacío.")]
     private $genre;
 
     #[ORM\Column(type: "integer")]
+    #[Assert\NotBlank(message: "El año no puede estar vacío.")]
     private $year;
 
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-        return $this;
     }
 
     public function getTitle(): ?string
