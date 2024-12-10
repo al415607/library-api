@@ -24,7 +24,7 @@ class Book
     #[Assert\NotBlank(message: "El autor no puede estar vacío.")]
     private $author;
 
-    #[ORM\Column(type:"string", length:255)]
+    #[ORM\Column(type: "string", length: 255)]
     #[Assert\NotBlank(message: "El género no puede estar vacío.")]
     private $genre;
 

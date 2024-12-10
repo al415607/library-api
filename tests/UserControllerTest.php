@@ -33,8 +33,8 @@ class UserControllerTest extends WebTestCase
         $this->client->request(
             'POST',
             '/users',
-            [],  
-            [],  
+            [],
+            [],
             ['CONTENT_TYPE' => 'application/json'],
             json_encode([
                 'name' => 'John Doe',
@@ -58,7 +58,7 @@ class UserControllerTest extends WebTestCase
         $this->client->request(
             'POST',
             '/users',
-            [], 
+            [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
             json_encode([
@@ -93,8 +93,8 @@ class UserControllerTest extends WebTestCase
         $this->client->request(
             'POST',
             '/users',
-            [],  
-            [], 
+            [],
+            [],
             ['CONTENT_TYPE' => 'application/json'],
             json_encode([
                 'name' => 'John Doe',

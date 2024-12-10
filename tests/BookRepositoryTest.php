@@ -32,26 +32,26 @@ class BookRepositoryTest extends KernelTestCase
     }
 
     public function testDeleteBook(): void
-{
-    $book = new Book();
-    $book->setTitle('Test Book')
-        ->setAuthor('Test Author')
-        ->setGenre('Fiction')
-        ->setYear(2024);
+    {
+        $book = new Book();
+        $book->setTitle('Test Book')
+            ->setAuthor('Test Author')
+            ->setGenre('Fiction')
+            ->setYear(2024);
 
-    $this->entityManager->persist($book);
-    $this->entityManager->flush();
+        $this->entityManager->persist($book);
+        $this->entityManager->flush();
 
-    
-    $this->assertNotNull($book->getId(), 'El libro debe tener un ID tras ser guardado');
 
-   
-    $this->entityManager->remove($book);
-    $this->entityManager->flush();
+        $this->assertNotNull($book->getId(), 'El libro debe tener un ID tras ser guardado');
 
-    $deletedBook = $this->bookRepository->find($book->getId());
-    $this->assertNull($deletedBook, 'El libro no debe estar en la BBDD tras ser eliminado');
-}
+
+        $this->entityManager->remove($book);
+        $this->entityManager->flush();
+
+        $deletedBook = $this->bookRepository->find($book->getId());
+        $this->assertNull($deletedBook, 'El libro no debe estar en la BBDD tras ser eliminado');
+    }
 
 
 

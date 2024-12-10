@@ -32,7 +32,7 @@ class BookController extends AbstractController
         }
 
         $book = $this->entityManager->getRepository(Book::class)->find($id);
-        
+
         if (!$book) {
             throw new NotFoundHttpException('Libro no encontrado');
         }
@@ -67,7 +67,7 @@ class BookController extends AbstractController
         }
 
         $book = $this->entityManager->getRepository(Book::class)->find($id);
-        
+
         if (!$book) {
             throw new NotFoundHttpException('Libro no encontrado');
         }
