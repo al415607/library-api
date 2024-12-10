@@ -23,7 +23,6 @@ class UserRepository extends ServiceEntityRepository
      */
     public function saveUser(User $user): void
     {
-        // Validar que el correo electrónico no esté ya en uso
         if ($this->findOneBy(['email' => $user->getEmail()])) {
             throw new \Exception("El correo electrónico ya está en uso.");
         }
@@ -39,7 +38,7 @@ class UserRepository extends ServiceEntityRepository
      */
     public function deleteUser(User $user): void
     {
-        $this->getEntityManager()->remove($user);  // Usar getEntityManager()
+        $this->getEntityManager()->remove($user);
         $this->getEntityManager()->flush();
     }
 

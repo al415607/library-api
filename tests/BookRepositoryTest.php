@@ -27,13 +27,12 @@ class BookRepositoryTest extends KernelTestCase
             ->setYear(2024);
 
         $this->entityManager->persist($book);
-        $this->entityManager->flush(); // Asegúrate de que los cambios se persisten en la base de datos
+        $this->entityManager->flush();
         $this->assertNotNull($book->getId());
     }
 
     public function testDeleteBook(): void
 {
-    // Crear un libro y persistirlo
     $book = new Book();
     $book->setTitle('Test Book')
         ->setAuthor('Test Author')
@@ -41,18 +40,17 @@ class BookRepositoryTest extends KernelTestCase
         ->setYear(2024);
 
     $this->entityManager->persist($book);
-    $this->entityManager->flush(); // Asegúrate de que el libro se persiste
+    $this->entityManager->flush();
 
-    // Verifica que el libro tiene un ID asignado
-    $this->assertNotNull($book->getId(), 'The book should have an ID after being saved.');
+    
+    $this->assertNotNull($book->getId(), 'El libro debe tener un ID tras ser guardado');
 
-    // Elimina el libro
+   
     $this->entityManager->remove($book);
-    $this->entityManager->flush(); // Asegúrate de que el libro se elimina
+    $this->entityManager->flush();
 
-    // Verifica que el libro ya no exista en la base de datos
     $deletedBook = $this->bookRepository->find($book->getId());
-    $this->assertNull($deletedBook, 'The book should not exist in the database after deletion.');
+    $this->assertNull($deletedBook, 'El libro no debe estar en la BBDD tras ser eliminado');
 }
 
 
@@ -75,7 +73,6 @@ class BookRepositoryTest extends KernelTestCase
 
     public function testUpdateBook(): void
     {
-        // Crear un libro
         $book = new Book();
         $book->setTitle('Old Title')
             ->setAuthor('Old Author')
@@ -84,11 +81,9 @@ class BookRepositoryTest extends KernelTestCase
 
         $this->bookRepository->save($book);
 
-        // Actualizar título
         $book->setTitle('New Title');
         $this->bookRepository->save($book);
 
-        // Verificar que el libro fue actualizado
         $updatedBook = $this->bookRepository->find($book->getId());
         $this->assertSame('New Title', $updatedBook->getTitle());
     }

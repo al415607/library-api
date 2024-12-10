@@ -27,25 +27,21 @@ class BookController extends AbstractController
      */
     public function updateBook(int $id, Request $request, ValidatorInterface $validator, AuthorizationCheckerInterface $authChecker): JsonResponse
     {
-        // Verificar que el usuario esté autenticado
         if (!$this->getUser() || !$authChecker->isGranted('ROLE_USER')) {
             throw new AccessDeniedException('Acceso denegado');
         }
 
-        // Buscar el libro por ID
         $book = $this->entityManager->getRepository(Book::class)->find($id);
         
         if (!$book) {
             throw new NotFoundHttpException('Libro no encontrado');
         }
 
-        // Actualizar los datos del libro
         $book->setTitle($request->request->get('title'));
         $book->setAuthor($request->request->get('author'));
         $book->setGenre($request->request->get('genre'));
         $book->setYear($request->request->get('year'));
 
-        // Validar el libro
         $errors = $validator->validate($book);
         if (count($errors) > 0) {
             $errorMessages = [];
@@ -66,19 +62,16 @@ class BookController extends AbstractController
      */
     public function deleteBook(int $id, AuthorizationCheckerInterface $authChecker): JsonResponse
     {
-        // Verificar que el usuario esté autenticado
         if (!$this->getUser() || !$authChecker->isGranted('ROLE_USER')) {
             throw new AccessDeniedException('Acceso denegado');
         }
 
-        // Buscar el libro por ID
         $book = $this->entityManager->getRepository(Book::class)->find($id);
         
         if (!$book) {
             throw new NotFoundHttpException('Libro no encontrado');
         }
 
-        // Eliminar el libro
         $this->entityManager->remove($book);
         $this->entityManager->flush();
 

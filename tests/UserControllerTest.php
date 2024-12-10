@@ -19,10 +19,8 @@ class UserControllerTest extends WebTestCase
 
         $this->client = static::createClient();
 
-        // Obtener el EntityManager para eliminar los usuarios previos
         $this->entityManager = self::getContainer()->get(EntityManagerInterface::class);
 
-        // Limpiar la tabla de usuarios antes de cada prueba
         $this->entityManager->getRepository(User::class)->createQueryBuilder('u')
             ->delete()
             ->getQuery()
@@ -35,8 +33,8 @@ class UserControllerTest extends WebTestCase
         $this->client->request(
             'POST',
             '/users',
-            [],  // No parámetros de archivo
-            [],  // No parámetros de archivos
+            [],  
+            [],  
             ['CONTENT_TYPE' => 'application/json'],
             json_encode([
                 'name' => 'John Doe',
@@ -60,8 +58,8 @@ class UserControllerTest extends WebTestCase
         $this->client->request(
             'POST',
             '/users',
-            [],  // No parámetros de archivo
-            [],  // No parámetros de archivos
+            [], 
+            [],
             ['CONTENT_TYPE' => 'application/json'],
             json_encode([
                 'name' => 'John Doe',
@@ -95,8 +93,8 @@ class UserControllerTest extends WebTestCase
         $this->client->request(
             'POST',
             '/users',
-            [],  // No parámetros de archivo
-            [],  // No parámetros de archivos
+            [],  
+            [], 
             ['CONTENT_TYPE' => 'application/json'],
             json_encode([
                 'name' => 'John Doe',

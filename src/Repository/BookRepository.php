@@ -28,7 +28,6 @@ class BookRepository extends ServiceEntityRepository
             $entityManager->persist($book);
             $entityManager->flush();
         } catch (ORMException $e) {
-            // Manejo de excepciones, puedes lanzar una excepción personalizada o registrar el error
             throw new \RuntimeException('Error al guardar el libro: ' . $e->getMessage());
         }
     }
@@ -46,7 +45,6 @@ class BookRepository extends ServiceEntityRepository
             $entityManager->remove($book);
             $entityManager->flush();
         } catch (ORMException $e) {
-            // Manejo de excepciones
             throw new \RuntimeException('Error al eliminar el libro: ' . $e->getMessage());
         }
     }
